@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="drawer lg:drawer-open">
+        <input id="my-drawer" type="checkbox" class="drawer-toggle"/>
+        <div class="drawer-content flex flex-col">
+            <!-- Navbar -->
+            <div class="navbar shadow-md">
+                <div class="flex-none lg:hidden">
+                    <label for="my-drawer" class="btn btn-outline drawer-button">
+                        <i class="fas fa-bars"></i>
+                    </label>
+                </div>
+                <div class="flex-1">
+                    <a class="btn btn-ghost normal-case text-xl" href="#">Task Manager</a>
+                </div>
+                <div class="flex-none">
+                    <a href="{{ path('logout') }}" class="btn btn-outline btn-sm btn-error">Logout</a>
+                </div>
+            </div>
+
+            <!-- Page content here -->
+            {% block page_content %}{% endblock %}
+        </div>
+        <div class="drawer-side">
+            <label for="my-drawer" class="drawer-overlay"></label>
+            <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+                <li class="menu-title pointer-events-none">
+                    <div class="flex items-center space-x-4">
+                        <div class="avatar">
+                            <div class="w-12 h-12 rounded-full bg-gray-500 flex items-center justify-center">
+                                <img src="https://secure.gravatar.com/avatar/sdfsdf?s=62&d=mm&r=g">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="font-bold">{{ app.user.email }}</div>
+                            <div class="text-sm text-gray-500">Plan: Standard</div>
+                        </div>
+                    </div>
+                </li>
+                <div class="divider"></div>
+                <li><a href="{{ path('time-dashboard') }}"><i class="fas fa-clock"></i> Timer Dashboard</a></li>
+                <li><a href="{{ path('app_tasks_list') }}"><i class="fas fa-tasks"></i> Tasks List</a></li>
+                <li><a href="#"><i class="fas fa-list"></i> Reports</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

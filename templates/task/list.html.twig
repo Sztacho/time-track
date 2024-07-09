@@ -1,0 +1,9 @@
+{% extends 'base.dashboard.html.twig' %}
+
+{% block page_content %}
+    <div id="task-list-module" class="container mx-auto mt-8">
+        <i class="fas fa-spinner fa-spin"></i>
+    </div>
+    {{ encore_entry_link_tags('task-list-module') }}
+    {{ encore_entry_script_tags('task-list-module') }}
+{% endblock %}

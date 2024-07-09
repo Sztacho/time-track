@@ -1,0 +1,54 @@
+version: "3"
+
+services:
+  web:
+    build: ./docker
+    hostname: localhost
+    restart: always
+    container_name: ttj-nginx
+    depends_on:
+      - mysql
+      - redis
+    ports:
+      - "9006:80"
+    links:
+      - mysql
+      - redis
+    image: "universal"
+    volumes:
+      - .:/var/www/html
+    tty: true
+    networks:
+      - ttj_network
+
+  mysql:
+    container_name: ttj-mysql
+    image: mysql:latest
+    restart: always
+    ports:
+      - "4443:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: hidden_password
+      MYSQL_DATABASE: ttl_database
+      MYSQL_USER: ttl_user_name
+      MYSQL_PASSWORD: ttl_user_password
+    volumes:
+      - ./mysql_vol:/var/lib/mysql
+    networks:
+      - ttj_network
+
+
+  redis:
+    restart: always
+    image: redis
+    container_name: ttj-redis
+    environment:
+      - TZ=Europe/Warsaw
+    networks:
+      - ttj_network
+
+volumes:
+  mysql_vol: {}
+
+networks:
+  ttj_network:

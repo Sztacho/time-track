@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ app.locale }}" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <title>Time Tracker Jira - {% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+{% for label, messages in app.flashes %}
+    <div class="toast toast-top toast-end z-50">
+        {% for flash in messages %}
+            <div class="alert rounded-0 alert-{{ label }} text-white">
+                {% if label == 'success' %}
+                    <i class="fa fa-circle-check"></i>
+                {% elseif label == 'error' %}
+                    <i class="fa fa-circle-xmark"></i>
+                {% elseif label == 'info' %}
+                    <i class="fa fa-circle-info"></i>
+                {% endif %}
+                {{ flash }}
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+{% block body %}{% endblock %}
+<div class="hidden">
+    <div class="alert-success"></div>
+    <div class="alert-error"></div>
+    <div class="alert-info"></div>
+</div>
+</body>
+</html>

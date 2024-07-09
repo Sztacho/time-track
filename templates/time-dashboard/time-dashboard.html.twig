@@ -1,0 +1,9 @@
+{% extends 'base.dashboard.html.twig' %}
+
+{% block page_content %}
+    <div id="time-dashboard-module" class="container mx-auto mt-8">
+        <i class="fas fa-spinner fa-spin"></i>
+    </div>
+    {{ encore_entry_link_tags('time-dashboard-module') }}
+    {{ encore_entry_script_tags('time-dashboard-module') }}
+{% endblock %}
